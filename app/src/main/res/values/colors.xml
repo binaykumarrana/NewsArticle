@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#F44336</color>
+    <color name="colorPrimaryDark">#E53935</color>
+    <color name="colorAccent">#EF9A9A</color>
+    <color name="white">#FFFFFF</color>
+    <color name="grey">#60000000</color>
+    <color name="mochi_darker">#ff595959</color>
+</resources>

@@ -1,0 +1,115 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: 'kotlin-kapt'
+apply from: '../version.gradle'
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.test.article"
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    //Appcompat and tools
+    implementation "androidx.appcompat:appcompat:$android_core"
+    implementation "androidx.core:core-ktx:$android_core"
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
+
+    //Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+
+    //Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    // Material Design
+    implementation "com.google.android.material:material:$material_version"
+
+    //VM
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+
+    //Room
+    implementation "androidx.room:room-runtime:$room"
+    kapt "androidx.room:room-compiler:$room"
+    implementation "androidx.room:room-ktx:$room"
+
+    //DI - Koin
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-core:$koin_version"
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+
+    //Networking
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$coroutines_adapter"
+    implementation "com.squareup.okhttp3:logging-interceptor:$interceptor"
+
+    //Glide
+    implementation "com.github.bumptech.glide:glide:$glide"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide"
+    implementation ("com.github.bumptech.glide:glide:4.9.0@aar") {
+        transitive = true
+    }
+
+    //LifeCycle
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-common:$lifecycle_version"
+
+    //UI
+    implementation "androidx.cardview:cardview:$cardview"
+    implementation "androidx.recyclerview:recyclerview:$recyclerview"
+
+    //UNIT TEST
+    testImplementation "junit:junit:$junit"
+    testImplementation "androidx.arch.core:core-testing:$archtest"
+    testImplementation "org.mockito:mockito-core:$mockito"
+    testImplementation "org.mockito:mockito-inline:$mockito"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$mock_web_server"
+    testImplementation "org.koin:koin-test:$koin_version"
+
+    //ANDROID TEST
+    androidTestImplementation 'org.mockito:mockito-android:3.8.0'
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:$mock_web_server"
+    androidTestImplementation "org.koin:koin-test:$koin_version"
+    androidTestImplementation "androidx.test.ext:junit:$junitAndroid"
+    androidTestImplementation "androidx.test:runner:$testRunner"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
+
+    //Pagination
+    implementation "androidx.paging:paging-runtime:$paging"
+
+    //RX for DAO Testing
+    implementation "io.reactivex.rxjava2:rxjava:$rx"
+}
